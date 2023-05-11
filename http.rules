@@ -1,0 +1,2 @@
+alert http any any -> any any (msg: "http rule (Cookie)"; pcre:"/[0-9A-Za-z]{10}[0-9A-Za-z\/\+]{11}=/C"; flow: established, to_server; sid: 7; rev: 1;)
+alert http any any -> any any (msg: "http rule (Other Header)"; pcre:"/[0-9A-Za-z]{10}[0-9A-Za-z\/\+]{11}=/H"; flow: established, to_server; sid: 8; rev: 1;)

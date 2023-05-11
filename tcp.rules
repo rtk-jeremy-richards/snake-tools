@@ -1,0 +1,6 @@
+alert tcp any any -> any any (msg: "tcp rule"; content: "|00 00 00 08|"; startswith; dsize: 12; flow: established, to_server; flowbits: set, a8; flowbits: noalert; sid: 1; rev: 1;)
+alert tcp any any -> any any (msg: "tcp rule"; content: "|00 00 00 04|"; startswith; dsize:8; flow: established, to_server; flowbits: isset, a8; flowbits: unset, a8; flowbits: set, a4; flowbits: noalert; sid: 2; rev: 1;)
+alert tcp any any -> any any (msg: "tcp rule"; content: "|00 00 00 08|"; startswith; dsize: 4; flow: established, to_client; flowbits: isset, a4; flowbits: unset, a4; flowbits: set, b81; flowbits: noalert; sid: 3; rev: 1;) 
+alert tcp any any -> any any (msg: "tcp rule"; dsize: 8; flow: established, to_client; flowbits: isset, b81; flowbits: unset, b81; flowbits: set, b8; flowbits: noalert; sid: 4; rev: 1;)
+alert tcp any any -> any any (msg: "tcp rule"; content: "|00 00 00 04|"; startswith; dsize: 4; flow: established, to_client; flowbits: isset, b8; flowbits: unset, b8; flowbits: set, b41; flowbits: noalert; sid: 5; rev: 1;)
+alert tcp any any -> any any (msg: "tcp rule"; dsize: 4; flow: established, to_client; flowbits: isset, b41; flowbits: unset, b41; sid: 6; rev: 1;) 
